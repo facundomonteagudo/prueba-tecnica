@@ -1,0 +1,27 @@
+Veo este codigo poco escalable si se agregaran nuevos tipos y con problemas de lectura devido a la cadena de if statements
+aplicando un switch statement podemos mejorar la escalabilidad y lectura del codigo y utilizando un enum podemos mejorar la forma de comprobar los tipos
+
+Una posibilidad a futuro podria ser aplicar el patron de diseño factory que mejoraria la escalabilidad del codigo haciendo facil la nueva insercion de futuros types y
+nos permite de extraer la logica de calculo de cada uno de los types correspondientes a su implementacion. 
+
+class Product
+{
+
+public decimal Price(){
+  if (UOM.Equals("grams"))
+    return Quantity * 6m / 1000;
+  
+  if (UOM.Equals("bottle"))
+    return Quantity * 3m;
+  
+  if (UOM.Equals("bag")){
+     var total += Quantity * .2m;
+     Página2/3
+     var setsOfFour = Quantity / 4;
+     total -= setsOfFour * .15m; //discount on groups of 4 items
+    return total;
+  }
+  
+  return 0m;
+}
+}

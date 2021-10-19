@@ -1,0 +1,28 @@
+En este caso aplicdando el patron de diseño factory podemos mejorar la escalabilidad del codigo haciendo facil la nueva insercion de futuros types en el codigo. 
+Las formas de pagos podrian ser una interfaz la cual cada tipo de empleado podria implementar para que cada tipo de empleado controle su forma de calcular a su sueldo. 
+
+public class Employee
+{
+private int _type;
+static final int ENGINEER = 0;
+static final int SALESMAN = 1;
+static final int MANAGER = 2;
+
+public double MonthlySalary {get; set;}
+public double Commission {get; set;}
+public double Bonus {get; set;}
+
+public Employee (int type)  { _type = type; }
+public int GetPaymentAmount()
+{
+switch (_type) {
+default:
+case 0:
+return MonthlySalary;
+case 1:
+return MonthlySalary + Commission;
+case 2:
+return MonthlySalary + Bonus;
+}
+}
+}

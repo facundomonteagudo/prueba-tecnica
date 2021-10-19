@@ -1,0 +1,19 @@
+const GetPaymentAmount = () => {
+  double result;
+
+  switch(_workerSituation){
+      case _isDead: 
+          result = GetDeadAmount();
+          break;
+      case _isSeparated: 
+          result = GetSeparatedAmount();
+          break;
+      case _isRetired: 
+          result = GetRetiredAmount();
+          break;
+      default:
+      result = GetNormalPayAmount();
+  }
+  
+  return result;
+};
