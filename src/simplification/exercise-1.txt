@@ -1,4 +1,27 @@
-const GetPaymentAmount = () => {
+## How would you make the following method more readable?
+
+Evitando los nested if statements y utilizando else if podemos lograr una lectura mucho mas limpia del codigo.
+
+double GetPaymentAmount()
+{
+  double result;
+  if (_isDead){
+    result = GetDeadAmount(); 
+  } else if (_isSeparated){ 
+      result = GetSeparatedAmount();
+  } else if (_isRetired) {
+      result = GetRetiredAmount();
+  } else {
+      result = GetNormalPayAmount();
+ }
+
+return result;
+};
+
+
+Si pudieramos tener la posibilidad de tener una varibale _workerSituation con un switch statement podemos mejorar la escalabilidad y lectura del codigo.
+
+double GetPaymentAmount(){
   double result;
 
   switch(_workerSituation){

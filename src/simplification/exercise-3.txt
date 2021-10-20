@@ -1,28 +1,37 @@
-En este caso aplicdando el patron de diseño factory podemos mejorar la escalabilidad del codigo haciendo facil la nueva insercion de futuros types en el codigo. 
-Las formas de pagos podrian ser una interfaz la cual cada tipo de empleado podria implementar para que cada tipo de empleado controle su forma de calcular a su sueldo. 
+# How would you improve the maintainability of the following code?
+
+En este caso podemos refactorizar el codigo y crear las clases ENGINEER , SALESMAN y MANAGER, 
+los cuales extienden a Employee.
+
+Esto mejoraria el codigo en terminos de escalabilidad y mantension, las clases podrian tener un override del metodo 
+GetPaymentAmount().
+
+Por otro lado tambien evitamos que en caso de que nuestro codigo continue aumentando, llegar a situaciones donde
+tengamos que continuamente estar chequeando el tipo de nuestro empleado,
+ya que podriamos tener acciones que solo pueda realizar un tipo de empleado espesifico.
 
 public class Employee
 {
-private int _type;
-static final int ENGINEER = 0;
-static final int SALESMAN = 1;
-static final int MANAGER = 2;
+  private int _type;
+  static final int ENGINEER = 0;
+  static final int SALESMAN = 1;
+  static final int MANAGER = 2;
 
-public double MonthlySalary {get; set;}
-public double Commission {get; set;}
-public double Bonus {get; set;}
+  public double MonthlySalary {get; set;}
+  public double Commission {get; set;}
+  public double Bonus {get; set;}
 
-public Employee (int type)  { _type = type; }
-public int GetPaymentAmount()
-{
-switch (_type) {
-default:
-case 0:
-return MonthlySalary;
-case 1:
-return MonthlySalary + Commission;
-case 2:
-return MonthlySalary + Bonus;
-}
-}
+  public Employee (int type)  { _type = type; }
+  
+  public int GetPaymentAmount(){
+    switch (_type) {
+      default:
+      case 0:
+        return MonthlySalary;
+      case 1:
+        return MonthlySalary + Commission;
+      case 2:
+        return MonthlySalary + Bonus;
+    }
+  }
 }

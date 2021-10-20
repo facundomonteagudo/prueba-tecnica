@@ -13,12 +13,20 @@ How would you generalize this algorithm in a method that returns the number of a
 the number of fences?
 double ApplesByFences(int fences){...}*/
 
+// si es 1 fence, apples = 3
+// si son 2 fences, apples = 7
+// si son 3 fences, apples = 15
+// si son 4 fences, apples = 31
+// si son 5 fences, apples = 63
+
 const ApplesByFences = (fences) => {
+  if (fences < 1) return; /// preventing infinite loop.
+
   if (fences === 1) {
     return 3;
   }
-  const apples = 3 * fences + 3;
-  console.log(apples);
+
+  return ApplesByFences(fences - 1) * 2 + 1;
 };
 
-ApplesByFences(1);
+console.log(ApplesByFences(5));

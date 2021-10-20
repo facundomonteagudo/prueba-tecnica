@@ -1,27 +1,28 @@
-Veo este codigo poco escalable si se agregaran nuevos tipos y con problemas de lectura devido a la cadena de if statements
-aplicando un switch statement podemos mejorar la escalabilidad y lectura del codigo y utilizando un enum podemos mejorar la forma de comprobar los tipos
+## Is the following code easily maintainable? How would you improve it?
 
-Una posibilidad a futuro podria ser aplicar el patron de diseño factory que mejoraria la escalabilidad del codigo haciendo facil la nueva insercion de futuros types y
-nos permite de extraer la logica de calculo de cada uno de los types correspondientes a su implementacion. 
+En este caso , este codigo no es facil de mantener debido a que si agregaramos mas OUM, 
+siempre tenemos que recurrir a modificar el metodo price para agregar la logica de calculo de precio de dicho OUM.
+
+Por otro lado veo como una posible mejora, ya como el precio lo dicta la UOM y si es posible, 
+extrapolar la logica de las reglas de negocio a la misma UOM en si y que esta misma calcule su precio.
 
 class Product
 {
 
-public decimal Price(){
-  if (UOM.Equals("grams"))
-    return Quantity * 6m / 1000;
+  public decimal Price(){
+    if (UOM.Equals("grams"))
+      return Quantity * 6m / 1000;
   
-  if (UOM.Equals("bottle"))
-    return Quantity * 3m;
+    if (UOM.Equals("bottle"))
+      return Quantity * 3m;
   
-  if (UOM.Equals("bag")){
-     var total += Quantity * .2m;
-     Página2/3
-     var setsOfFour = Quantity / 4;
-     total -= setsOfFour * .15m; //discount on groups of 4 items
-    return total;
-  }
+    if (UOM.Equals("bag")){
+      var total += Quantity * .2m;
+      var setsOfFour = Quantity / 4;
+      total -= setsOfFour * .15m; //discount on groups of 4 items
+      return total;
+    }
   
   return 0m;
-}
+  }
 }
